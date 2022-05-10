@@ -1,0 +1,9 @@
+import { render, screen } from 'utils/test-utils'
+import { Default } from './{{pascalCase name}}.stories'
+
+describe('<{{pascalCase name}}>', () => {
+  it('should render {{pascalCase name}}', () => {
+    render(<Default {...Default.args} />, {})
+    expect(screen.getByText(/text/i)).toBeInTheDocument()
+  })
+})

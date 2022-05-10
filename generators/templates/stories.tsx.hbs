@@ -1,0 +1,16 @@
+import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { {{pascalCase name}} } from '.'
+
+type Props = typeof {{pascalCase name}}
+
+export default {
+  title: 'UI/{{pascalCase name}}',
+  component: {{pascalCase name}},
+} as ComponentMeta<Props>
+
+const Template: ComponentStory<Props> = (args) => <{{pascalCase name}} {...args} />
+
+export const Default = Template.bind({})
+Default.args = {
+  // props
+}
