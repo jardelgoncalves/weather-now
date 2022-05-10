@@ -1,6 +1,6 @@
 /// <reference lib="webworker" />
 /* eslint-disable no-restricted-globals */
-
+/* eslint-disable */
 
 import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
