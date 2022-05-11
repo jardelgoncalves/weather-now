@@ -3,9 +3,9 @@ import styles from './styles.module.scss'
 
 type CardWeatherProps = {
   title: string
-  temp: number
-  pressure: number
-  humidity: number
+  temp?: number
+  pressure?: number
+  humidity?: number
   lastUpdate?: string
   isLoading?: boolean
   isError?: boolean
@@ -23,7 +23,7 @@ function CardWeather({
   onClick,
 }: CardWeatherProps) {
   const temperatureClassColor = useMemo(() => {
-    if (temp <= 5) return styles.blueColor
+    if (!temp || temp <= 5) return styles.blueColor
 
     return temp <= 25 ? styles.orangeColor : styles.redColor
   }, [temp])
