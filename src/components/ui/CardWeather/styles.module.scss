@@ -27,7 +27,6 @@
     width: 100%;
     font-weight: 400;
     font-size: $font-size-5xl;
-    color: $info;
   }
 
   .footer {
@@ -133,5 +132,16 @@
   width: 60px;
   margin: 40px auto;
   animation: spin 1s linear infinite;
+}
 
+.blueColor {
+  color: $info;
+}
+
+.orangeColor {
+  color: $warning;
+}
+
+.redColor {
+  color: $danger;
 }

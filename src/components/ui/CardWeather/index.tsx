@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import styles from './styles.module.scss'
 
 type CardWeatherProps = {
@@ -22,12 +22,22 @@ function CardWeather({
   isLoading,
   onClick,
 }: CardWeatherProps) {
+  const temperatureClassColor = useMemo(() => {
+    if (temp <= 5) return styles.blueColor
+
+    return temp <= 25 ? styles.orangeColor : styles.redColor
+  }, [temp])
+
   return (
     <div className={`${styles.container}`}>
       <h2 className={styles.cityHeader}>{title}</h2>
       {!isError && !isLoading && (
         <>
-          <h3 className={styles.temperatureContent}>{temp}º</h3>
+          <h3
+            className={`${styles.temperatureContent} ${temperatureClassColor}`}
+          >
+            {temp}º
+          </h3>
           <div className={styles.footer}>
             <div className={styles.footerDetails}>
               <h4>
