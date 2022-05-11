@@ -1,6 +1,6 @@
 /// <reference lib="webworker" />
 /* eslint-disable no-restricted-globals */
-
+/* eslint-disable */
 
 import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
@@ -34,7 +34,7 @@ registerRoute(
 );
 
 registerRoute(
-  ({ url }) => url.origin === self.location.origin && url.pathname.endsWith('.png'),
+  ({ url }) => url.origin === self.location.origin && /\.(png|jpg|jpeg|svg)$/i.test(url.pathname),
   new StaleWhileRevalidate({
     cacheName: 'images',
     plugins: [
