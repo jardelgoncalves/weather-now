@@ -4,7 +4,7 @@ import { CardWeather } from '.'
 export type StoryProps = typeof CardWeather
 
 export default {
-  title: 'CardWeather',
+  title: 'ui/CardWeather',
   component: CardWeather,
   argTypes: {
     temp: {
