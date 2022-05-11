@@ -34,7 +34,7 @@ registerRoute(
 );
 
 registerRoute(
-  ({ url }) => url.origin === self.location.origin && url.pathname.endsWith('.png'),
+  ({ url }) => url.origin === self.location.origin && /\.(png|jpg|jpeg|svg)$/i.test(url.pathname),
   new StaleWhileRevalidate({
     cacheName: 'images',
     plugins: [
