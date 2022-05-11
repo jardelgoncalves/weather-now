@@ -5,7 +5,7 @@ import { Header } from '.'
 type Props = typeof Header
 
 export default {
-  title: 'Header',
+  title: 'ui/Header',
   component: Header,
   parameters: {},
 } as ComponentMeta<Props>
