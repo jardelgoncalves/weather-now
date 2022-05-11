@@ -1,10 +1,13 @@
-import { Story, Meta } from '@storybook/react'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
+
 import { Header } from '.'
+
+type Props = typeof Header
 
 export default {
   title: 'Header',
   component: Header,
   parameters: {},
-} as Meta
+} as ComponentMeta<Props>
 
-export const Default: Story = () => <Header />
+export const Default: ComponentStory<Props> = () => <Header />
