@@ -1,8 +1,3 @@
-import { addDecorator } from '@storybook/react'
-import StoryRouter from "storybook-react-router"
-
-addDecorator(StoryRouter());
-
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
@@ -10,5 +5,14 @@ export const parameters = {
       color: /(background|color)$/i,
       date: /Date$/,
     },
+  },
+  backgrounds: {
+    default: 'weather',
+    values: [
+      {
+        name: 'weather',
+        value: '#f1f1f1',
+      },
+    ],
   },
 }
