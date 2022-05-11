@@ -1,5 +1,5 @@
 export const formatter = {
-  lastUpdated: (date?: string) =>
+  lastUpdated: (date?: string | number) =>
     new Date(date || Date.now()).toLocaleString('en-US', {
       hour: 'numeric',
       minute: 'numeric',
