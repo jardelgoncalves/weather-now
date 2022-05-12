@@ -6,7 +6,7 @@ import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
-import { StaleWhileRevalidate } from 'workbox-strategies';
+import { StaleWhileRevalidate, CacheFirst } from 'workbox-strategies';
 
 declare const self: ServiceWorkerGlobalScope;
 
@@ -16,6 +16,7 @@ precacheAndRoute(self.__WB_MANIFEST);
 const fileExtensionRegexp = new RegExp('/[^/?]+\\.[^/]+$');
 registerRoute(
   ({ request, url }: { request: Request; url: URL }) => {
+    console.log(url)
     if (request.mode !== 'navigate') {
       return false;
     }
@@ -33,6 +34,7 @@ registerRoute(
   createHandlerBoundToURL(process.env.PUBLIC_URL + '/index.html')
 );
 
+
 registerRoute(
   ({ url }) => url.origin === self.location.origin && /\.(png|jpg|jpeg|svg)$/i.test(url.pathname),
   new StaleWhileRevalidate({
@@ -42,6 +44,18 @@ registerRoute(
     ],
   })
 );
+
+registerRoute(
+  new RegExp('api.openweathermap.org', 'i'),
+  new CacheFirst({
+    cacheName: 'api-openweathermap',
+    plugins: [
+      new ExpirationPlugin({
+        maxAgeSeconds: 60 * 10 // 10 minutes
+      })
+    ]
+  })
+)
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
