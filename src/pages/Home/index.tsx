@@ -1,19 +1,14 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { BaseLayout } from 'components/layout/BaseLayout'
 import { CardWeather } from 'components/ui/CardWeather'
 
 import { useWeatherQuery } from 'hooks/use-weather-query'
-import { WeatherService } from 'services/weather-service'
 import styes from './Home.module.scss'
 
 export function HomePage() {
   const nuukGL = useWeatherQuery('nuuk,GL')
   const urubiciBR = useWeatherQuery('urubici,BR')
   const nairobiKE = useWeatherQuery('nairobi,KE')
-
-  useEffect(() => {
-    WeatherService.getByCityAndState('urubici,BR')
-  })
 
   return (
     <BaseLayout>
