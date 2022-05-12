@@ -2,6 +2,7 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable */
 
+import { API_WEATHER_DOMAIN } from 'constants/domains';
 import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
@@ -16,7 +17,7 @@ precacheAndRoute(self.__WB_MANIFEST);
 const fileExtensionRegexp = new RegExp('/[^/?]+\\.[^/]+$');
 registerRoute(
   ({ request, url }: { request: Request; url: URL }) => {
-    console.log(url)
+
     if (request.mode !== 'navigate') {
       return false;
     }
@@ -46,7 +47,9 @@ registerRoute(
 );
 
 registerRoute(
-  new RegExp('api.openweathermap.org', 'i'),
+  ({ url }) => {
+    return url.origin.includes(API_WEATHER_DOMAIN)
+  },
   new CacheFirst({
     cacheName: 'api-openweathermap',
     plugins: [
@@ -54,7 +57,8 @@ registerRoute(
         maxAgeSeconds: 60 * 10 // 10 minutes
       })
     ]
-  })
+  }),
+  'GET'
 )
 
 self.addEventListener('message', (event) => {
