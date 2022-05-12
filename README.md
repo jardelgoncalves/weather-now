@@ -13,6 +13,7 @@
 - Storybook (doc de components)
 - Eslint + Prettier
 - Husky + Commitlint
+- Git-flow
 
 ## Configurando variáveis de ambientes
 Altere o nome do arquivo `.env.sample` para `.env` e atribua o valor para a variável de ambiente:
